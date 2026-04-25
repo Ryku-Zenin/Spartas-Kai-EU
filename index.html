@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spartas Kai Karate</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;800&family=Montserrat:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">#
+
+  <link rel="icon" type="image/png" href="Screenshot_2026-04-24_233716-removebg-preview.png">
+    
+    <style>
+        /* Global Reset to prevent overflow */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            /* Discord Dark Grey Base */
+            --bg-base: #313338;
+            --bg-surface: #2b2d31;
+            --bg-elevated: #1e1f22;
+            
+            /* Royal Accents */
+            --royal-gold: #d4af37;
+            --royal-gold-light: #f3e5ab;
+            --royal-gold-dark: #aa8c2c;
+            
+            /* Typography Colors */
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --text-pure: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-base);
+            /* Subtle dark radial gradient for depth */
+            background-image: radial-gradient(circle at 50% 0%, #3a3c42 0%, #313338 60%);
+            color: var(--text-main);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.8;
+            overflow-x: hidden; /* Zero horizontal scrolling */
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-family: 'Cinzel', serif;
+            color: var(--royal-gold);
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-weight: 300;
+        }
+
+        strong {
+            font-weight: 600;
+            color: var(--text-pure);
+        }
+
+        em {
+            font-style: italic;
+            color: var(--text-muted);
+        }
+
+        /* Navigation */
+        header {
+            background-color: rgba(30, 31, 34, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            text-align: center;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+        }
+
+        nav a {
+            color: var(--text-pure);
+            text-decoration: none;
+            margin: 0 1.5rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            transition: color 0.4s ease, text-shadow 0.4s ease;
+            display: inline-block;
+        }
+
+        nav a:hover {
+            color: var(--royal-gold);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
+        }
+
+        /* Main Containers */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .section-box {
+            background: linear-gradient(145deg, var(--bg-surface), var(--bg-elevated));
+            padding: 3rem;
+            border-radius: 4px; /* Sharp, elegant corners, not bubbly */
+            border: 1px solid rgba(212, 175, 55, 0.15);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 2px;
+            background-color: var(--royal-gold);
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 8rem 2rem 6rem 2rem;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--text-pure);
+            text-shadow: 0 4px 20px rgba(0,0,0,0.5);
+            margin-bottom: 1rem;
+        }
+
+        .hero .slogan {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--royal-gold);
+            letter-spacing: 3px;
+            font-weight: 400;
+        }
+
+        /* Leadership Grid */
+        .roster-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .roster-card {
+            background-color: var(--bg-elevated);
+            padding: 2rem;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: transform 0.4s ease, border-color 0.4s ease;
+        }
+
+        .roster-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(212, 175, 55, 0.4);
+        }
+
+        .roster-card h3 {
+            font-size: 1.2rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+            color: var(--text-pure);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 0.8rem;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: baseline;
+        }
+
+        ul li::before {
+            content: '♦';
+            color: var(--royal-gold);
+            font-size: 0.7rem;
+            margin-right: 10px;
+        }
+
+        /* Rules */
+        ol.royal-list {
+            counter-reset: royal-counter;
+            list-style-type: none;
+        }
+
+        ol.royal-list li {
+            position: relative;
+            padding-left: 3rem;
+            margin-bottom: 1.5rem;
+            font-size: 0.95rem;
+        }
+
+        ol.royal-list li::before {
+            counter-increment: royal-counter;
+            content: counter(royal-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-family: 'Cinzel', serif;
+            color: var(--royal-gold);
+            font-size: 1.2rem;
+            font-weight: bold;
+            width: 2rem;
+            text-align: right;
+        }
+
+        /* Call to Action Buttons */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2.5rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Primary Gold Button */
+        .btn-gold {
+            background-color: transparent;
+            color: var(--royal-gold);
+            border: 1px solid var(--royal-gold);
+        }
+
+        .btn-gold:hover {
+            background-color: var(--royal-gold);
+            color: var(--bg-base);
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Secondary Button */
+        .btn-silver {
+            background-color: transparent;
+            color: var(--text-pure);
+            border: 1px solid var(--text-muted);
+        }
+
+        .btn-silver:hover {
+            background-color: var(--text-pure);
+            color: var(--bg-base);
+        }
+
+        .requirements-text {
+            text-align: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-top: 2rem;
+            font-style: italic;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            font-family: 'Cinzel', serif;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 3rem;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero .slogan { font-size: 1.1rem; }
+            .section-box { padding: 2rem 1.5rem; }
+            nav a { margin: 0.5rem 1rem; display: block; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <a href="#about">The Dojo</a>
+            <a href="#leadership">Roster</a>
+            <a href="#rules">Decrees</a>
+            <a href="#join">Enlist</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h1>Spartas Kai Karate</h1>
+        <div class="slogan">Train Hard. Fight Smart. Rise Strong.</div>
+    </div>
+
+    <div class="container">
+        
+        <section id="about" class="section-box">
+            <h2>SPARTAS KAI KARATE.</h2>
+            <h4 style="color: var(--text-pure);">The dojo that is known by creating their players.</h4>
+            
+            <p><strong>Spartas Kai was created on 10/20/2024 by Prozidole, Brambus12, and Diego_Box. Since then, it has been nothing but success. First place in the DOTM, multiple victories in All Valley, numerous wins in Mini-Tournaments, Cross Region, Double Podium, Triple Podium, and much more.</strong></p>
+
+            <div style="border-left: 2px solid var(--royal-gold); padding-left: 1.5rem; margin: 2rem 0; background: rgba(0,0,0,0.2); padding: 1.5rem;">
+                <p><em>We’ve always had rivals, the most famous being Silver Kai Karate. They constantly tried to take us down, banning our players and calling Spartas Kai members to their dojo, but we never fell. Prozidole and Brambus always made sure that players who hadn’t yet reached their first podium finally experienced that feeling of standing on it.</em></p>
+
+                <p><em>Here, we teach discipline, techniques, and adaptations so you can perform well regardless of your ping. We don’t seek competition. We create it.</em></p>
+            </div>
+
+            <p style="text-align: center; margin-top: 2rem;"><strong>SPARTAS KAI KARATE. (discipline, respect, competition, etc.). Even if it’s Roblox, treating it seriously makes it cooler.</strong></p>
+        </section>
+
+        <section id="leadership" class="section-box">
+            <h2 style="text-align: center;">Members & Leadership</h2>
+            <p style="text-align: center; color: var(--text-muted);">Adds credibility and structure. Show who runs things.</p>
+            
+            <div class="roster-grid">
+                <div class="roster-card">
+                    <h3>High Command</h3>
+                    <ul>
+                        <li><strong>Sensei / Leader:</strong>&nbsp; prozidole and brambus12</li>
+                        <li><strong>Co-Owner:</strong>&nbsp; itsmrkyx</li>
+                        <li><strong>Moderators:</strong>&nbsp; .svlqsx or seo</li>
+                    </ul>
+                </div>
+                
+                <div class="roster-card">
+                    <h3>The Elite Roster</h3>
+                    <ul>
+                        <li><strong>Captain:</strong>&nbsp; prozidole</li>
+                        <li><strong>Elite Leader:</strong>&nbsp; Brambus12</li>
+                        <li><strong>Elite Member:</strong>&nbsp; ItsTrulyDomz</li>
+                        <li><strong>Elite Member:</strong>&nbsp; EzyFFA</li>
+                        <li><strong>Elite Member:</strong>&nbsp; Jester_Dx</li>
+                        <li><strong>Elite Member:</strong>&nbsp; MidnightCrescente</li>
+                        <li><strong>Elite Member:</strong>&nbsp; ImMrKyx</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="rules" class="section-box">
+            <h2>Spartas Kai Rules</h2>
+            <p style="margin-bottom: 2rem; color: var(--royal-gold-light);">Keep it clear and strict. This prevents drama later.</p>
+            
+            <ol class="royal-list">
+                <li>No toxicity. We want to provide a safe experience within our server, so please respect all server members and avoid drama.</li>
+                <li>No discrimination of any kind. Racial slurs will result in a non-appealable ban. Bypassing racial slurs by censoring them or sending images/videos of them will still result in punishment.</li>
+                <li>Do not argue. This includes arguing about a moderation decision.</li>
+                <li>Do not attempt to scam anyone, out of anything.</li>
+                <li>No evading punishments.</li>
+                <li>Do not forge any evidence.</li>
+                <li>No discussing controversial/sensitive topics (politics/religion)</li>
+                <li>Do not post or discuss anything containing age-restricted (18+) content. This includes pornographic images/videos/links, gore, 18+ pfps/banners/names, etc.</li>
+                <li>Do not harass members. Any form of harassment such as hate speech, blackmailing, doxxing, inappropriate DMs, impersonation, etc. will result in moderation action.</li>
+                <li>Do not use banned words and/or bypassing banned words. This includes having banned words on your profile.</li>
+                <li>No advertising any content (ex. YouTube videos/channels, discord servers, roblox groups, etc.) without permission. This includes DMs.</li>
+                <li>Do not spam ping/annoy members.</li>
+                <li>Do not spam or flood any chat for any reason. This includes giant text walls and copypastas.</li>
+                <li>Do not send any ip grabbers or otherwise malicious links.</li>
+                <li>You are required to be 13+ to use this discord server or any discord server. If you are found to be under the age of 13 you will be banned.</li>
+                <li>Do not use alternate accounts to evade a punishment.</li>
+                <li>Do not give a banned player alternate accounts, or knowingly lie to protect an alt.</li>
+            </ol>
+        </section>
+
+        <section id="join" class="section-box" style="text-align: center;">
+            <h2>Step Into The Dojo</h2>
+            
+            <div class="btn-group">
+                <a href="https://www.roblox.com/communities/35771391/Spartas-Kai-Karate#!/about" target="_blank" class="btn btn-silver">The Roblox Group</a>
+                <a href="https://discord.gg/spartas" target="_blank" class="btn btn-gold">The Discord Server</a>
+            </div>
+
+            <p class="requirements-text">
+                * You actually should join from prestige 1, but if you show that you are determined to learn and be better you could join a little earlier but you must show it.
+            </p>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; 2026 Spartas Kai Karate. Honor and Discipline.
+    </footer>
+
+</body>
+</html>
